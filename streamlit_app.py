@@ -22,16 +22,6 @@ my_fruit_list = my_fruit_list.set_index('Fruit')
 fruits_selected = streamlit.multiselect("Pick some fruits:", list(my_fruit_list.index),['Avocado','Strawberries'])
 fruits_to_show = my_fruit_list.loc[fruits_selected]
 
-
-
-fruit_choice = streamlit.text_input('What fruit would you like add ?' + 'jackfruit')
-streamlit.write('The user entered ', fruit_choice)
-
-
-
-
-
-
 # Display the table on the page.
 streamlit.dataframe(fruits_to_show)
 
@@ -81,4 +71,5 @@ add_my_fruit = streamlit.text_input('What fruit would you like to add?')
 if streamlit.button('Add a Fruit to the List'):
     my_cnx = snowflake.connector.connect(** streamlit.secrets["snowflake"])
     back_from_function = insert_row_snowflake(add_my_fruit)
+    my_cnx.close()
     streamlit.text(back_from_function)
