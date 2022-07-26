@@ -1,3 +1,1 @@
 import snowflake.connector
-
-
