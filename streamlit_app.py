@@ -28,22 +28,7 @@ streamlit.write('The user entered ', fruit_choice)
 
 import requests
 fruityvice_response = requests.get("https://fruityvice.com/api/fruit/watermelon")
-
-# write your own comment -what does the next line do? 
-fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
-# write your own comment - what does this do?
-streamlit.dataframe(fruityvice_normalized)
-
-import snowflake.connector
-
-my_cnx = snowflake.connector.connect(** streamlit.secrets["snowflake"])
-my_cur = my_cnx.cursor()
-my_cur.execute("select*from fruit_load_list")
-my_data_rows = my_cur.fetchall()
-streamlit.header("The fruit load list contains:")
-streamlit.dataframe(my_data_rows)
+streamlit.text(fruityvice_response)
 
 
-#This will not work correctly,but just go with it for now
-my_cur.execute("insert into fruit_load_list values('from streamlit')")
 
